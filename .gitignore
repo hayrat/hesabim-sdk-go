@@ -1,0 +1,19 @@
+# Test and build output
+*.test
+*.out
+coverage.*
+/examples/bin/
+node_modules/
+dist/
+
+# Fuzz corpus cache is local; checked-in seeds live under testdata/
+/testdata/fuzz/*/cache/
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+
+# Local secrets must never be committed
+.env
+.env.*
