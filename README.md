@@ -11,7 +11,7 @@ Backend-for-Frontend ([`examples/bff`](examples/bff) is a complete one).
 > [`IMPLEMENTATION.md`](IMPLEMENTATION.md) (Turkish): registration request,
 > environment variables, and a step-by-step guide an engineer — or an AI coding
 > agent — can follow end to end. Complete, tested programs live in
-> [`examples/`](examples/): resource servers on net/http, Echo, Gin and chi, and
+> [`examples/`](examples/): resource servers on net/http and Echo, and
 > a full Backend-for-Frontend (login, callback, refresh rotation, logout).
 
 ## Installation

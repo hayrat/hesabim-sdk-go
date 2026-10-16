@@ -201,8 +201,6 @@ güvenli; JWKS'i kendisi tazeler).
 |---|---|---|
 | `net/http` (Go 1.22+ mux) | `examples/resource-server/nethttp/main.go` | `mux.Handle("/api/", verifier.Middleware(api))` |
 | Echo v4 | `examples/resource-server/echo/main.go` | `e.Group("/api", echo.WrapMiddleware(verifier.Middleware))` |
-| Gin | `examples/resource-server/gin/main.go` | `hesabimAuth(verifier)` adaptörünü **olduğu gibi** kopyala |
-| chi | `examples/resource-server/chi/main.go` | `r.Use(verifier.Middleware)` |
 | Diğer (gRPC vb.) | — | `verifier.Verify(ctx, rawToken)`; 401'de hata metnini istemciye **yazma** |
 
 Middleware yalnız **401**'e karar verir (token yok / geçersiz / başka API'nin
@@ -276,7 +274,7 @@ SPA tarafı: [`hesabim-sdk-js` → IMPLEMENTATION.md](https://github.com/hayrat/
 
   Hazır implementasyon: `examples/resource-server/nethttp/cors.go`
   (`withCORS`, testli). `CORS_ALLOWED_ORIGINS` env'i (virgülle ayrılmış tam
-  origin listesi) boşsa kapalıdır. Echo/Gin/chi'de framework'ün kendi CORS
+  origin listesi) boşsa kapalıdır. Echo'da framework'ün kendi CORS
   middleware'i aynı kurallarla kullanılabilir — sıralama kuralı (1) aynıdır.
 
 ---
@@ -298,10 +296,9 @@ Bağımlılıklar: `github.com/hayrat/hesabim-sdk-go`,
 `github.com/coreos/go-oidc/v3` (discovery + ID token doğrulama),
 `golang.org/x/oauth2` (code exchange, PKCE, refresh).
 
-Projen Echo/Gin/chi kullanıyorsa: `/auth/*` handler'ları düz
-`http.HandlerFunc`'tır, framework'ün `WrapHandler`/`gin.WrapF` karşılığıyla
-bağla; `/api` grubunu `a.requireSession(a.api.Middleware(...))` zinciriyle sar
-(Echo: `echo.WrapMiddleware`, Gin: §5.3'teki adaptör deseni).
+Projen Echo kullanıyorsa: `/auth/*` handler'ları düz `http.HandlerFunc`'tır,
+`echo.WrapHandler` ile bağla; `/api` grubunu
+`a.requireSession(a.api.Middleware(...))` zinciriyle sar (`echo.WrapMiddleware`).
 
 ### 6.2 Örneğin yaptıkları — değiştirme
 
