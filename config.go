@@ -86,6 +86,10 @@ const (
 	ScopeTypeProvince = "province"
 	ScopeTypeDistrict = "district"
 	ScopeTypeSchool   = "school"
+	// ScopeTypeLanguage is flat — a language, not a place. No place contains
+	// a language and a language contains no place; a Resolver has nothing to
+	// add for it.
+	ScopeTypeLanguage = "language"
 )
 
 // ScopeResolver decides containment questions this package cannot answer on its

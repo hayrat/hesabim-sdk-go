@@ -591,15 +591,21 @@ Grant'ler her refresh'te yeniden hesaplanır; geri alınan bir rol en geç
 
 ## 10. Kapsam sözlüğü
 
-`scope.type` yalnızca: `region` · `province` · `district` · `school`
+`scope.type` yalnızca: `region` · `province` · `district` · `school` · `language`
 (`hesabim.ScopeTypeRegion`, `ScopeTypeProvince`, `ScopeTypeDistrict`,
-`ScopeTypeSchool`).
+`ScopeTypeSchool`, `ScopeTypeLanguage`).
 
+- İlk dördü yer hiyerarşisidir (bölge ⊃ il ⊃ ilçe ⊃ okul). `language` **düzdür**:
+  bir dil, yer değildir; hiçbir yer bir dili kapsamaz, bir dil kendisinden başka
+  bir şeyi kapsamaz. Dil kapsamlı bir rol için `Resolver` gerekmez.
 - **Ülke seviyesi yok.** "Tüm ülke" = **kapsamsız rol** (proje geneli).
 - Üniversite/bölüm gibi seviyeler kapsam hedefi değildir; uygulamanın kendi
   verisinde kalır.
-- `scope.id`, Hesabım referans verisindeki id'dir. Uygulamanın yer kayıtlarıyla
-  eşleme gerekiyorsa eşleme listesini Hesabım yöneticisinden iste.
+- `scope.id`, Hesabım referans verisindeki id'dir. Uygulamanın yer ya da dil
+  kayıtlarıyla eşleme gerekiyorsa eşleme listesini Hesabım yöneticisinden iste
+  (dillerde köprü dil **kodudur**).
+- Sözlük kapalı bir beyaz liste değildir: bu sürümün tanımadığı bir tür taşıyan
+  kapsam, bilinen türde hiçbir hedefle eşleşmez — reddeder, yetki vermez.
 
 ---
 
