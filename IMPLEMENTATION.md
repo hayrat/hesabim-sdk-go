@@ -601,9 +601,16 @@ Grant'ler her refresh'te yeniden hesaplanır; geri alınan bir rol en geç
 - **Ülke seviyesi yok.** "Tüm ülke" = **kapsamsız rol** (proje geneli).
 - Üniversite/bölüm gibi seviyeler kapsam hedefi değildir; uygulamanın kendi
   verisinde kalır.
-- `scope.id`, Hesabım referans verisindeki id'dir. Uygulamanın yer ya da dil
-  kayıtlarıyla eşleme gerekiyorsa eşleme listesini Hesabım yöneticisinden iste
-  (dillerde köprü dil **kodudur**).
+- `scope.id`, Hesabım referans verisindeki id'dir. Yerlerde köprü **guid**'dir:
+  Hesabım yer kaydının sahibidir ve guid'ler eski yer servisinin (yer.hayrat.dev)
+  guid'leriyle aynıdır — uygulaman yerleri o guid'lerle tutuyorsa eşleme
+  hazırdır. id↔guid listesini Hesabım yöneticisinden iste (dillerde köprü dil
+  **kodudur**).
+- Türkiye'nin 81 ili ve İçişleri Bakanlığı listesindeki 973 ilçenin hepsi
+  vardır. Vakfın kendi ilçeleri de (büyükşehirde "Merkez", ilçe gibi yürütülen
+  belde/köy) geçerli kapsam hedefidir; Hesabım bunları `is_official: false`
+  olarak işaretler. Yetki kararı bu ayrımı umursamaz — `Can` yalnız `(type, id)`
+  karşılaştırır.
 - Sözlük kapalı bir beyaz liste değildir: bu sürümün tanımadığı bir tür taşıyan
   kapsam, bilinen türde hiçbir hedefle eşleşmez — reddeder, yetki vermez.
 
